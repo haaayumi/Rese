@@ -4,8 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\AuthController;
-use App\Http\Requests\RegisterRequest;
-use App\Http\Requests\LoginRequest;
+
 
 
 /*
@@ -22,11 +21,14 @@ use App\Http\Requests\LoginRequest;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::middleware('auth')->group(function () {
+    Route::get('/logout', [AuthController::class, 'getLogout']);
+});
+
 Route::get('/', [ShopController::class, 'index']);
 Route::get('/menu1', [MenuController::class, 'index']);
-Route::get('/register', [AuthController::class,'getRegister'])->name('register');
-Route::post('/register', [AuthController::class, 'store']);
-Route::get('/thanks', [AuthController::class, 'showThanks']);
-
-Route::get('/login', [AuthController::class,'getLogin']);
+Route::get('/register', [AuthController::class,'getRegister']);
+Route::post('/register', [AuthController::class, 'postRegister']);
+Route::get('/login', [AuthController::class,'getLogin'])->name('register');
 Route::post('/login', [AuthController::class,'postLogin']);

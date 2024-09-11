@@ -16,17 +16,16 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-    public function showThanks()
+
+    public function postRegister(RegisterRequest $request)
     {
-        return view('/thanks');
+        User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+        ]);
+        return view('thanks');
     }
-
-    public function store(RegisterRequest $request)
-    {
-        return redirect('/thanks');
-    }
-
-
 
 
     public function getLogin()
@@ -34,7 +33,7 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function postLogin(LoginRequest $request)
+    public function postLogin(Request $request)
     {
         if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
             return redirect('/');

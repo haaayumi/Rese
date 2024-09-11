@@ -17,7 +17,7 @@
   <form action="/logout" class="form" method="post">
     @csrf
     <div class="menu__container">
-      <il class="menu"><a href="" class="logout">Logout</a></il>
+      <il class="menu"><a href="/login" class="logout">Logout</a></il>
     </div>
   </form>
   <div class="menu__container">

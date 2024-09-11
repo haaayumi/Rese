@@ -18,8 +18,8 @@
   <div class="register-form__heading">
     <h2>Register</h2>
   </div>
-  <form class="form" action="/thanks" method="get">
-    @csrf
+  <form class="form" action="/register" method="POST">
+  @csrf
     <div class="form__group">
       <div class="form__group-icon">
         <i class="fa-solid fa-user"></i>
