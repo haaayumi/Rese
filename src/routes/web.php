@@ -23,7 +23,7 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/logout', [AuthController::class, 'getLogout']);
+    Route::get('/login', [AuthController::class, 'getLogout']);
 });
 
 Route::get('/', [ShopController::class, 'index']);

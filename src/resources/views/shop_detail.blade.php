@@ -5,7 +5,7 @@
 @endsection
 
 @section('icon')
-<i class="fa-solid fa-bars"></i>
+<a href="/menu1" class="return__btn"><i class="fa-solid fa-bars"></i></a>
 @endsection
 
 @section('title')
@@ -18,10 +18,10 @@
     <div class="shop">
       <div class="shop__title">
         <div class="before-page">
-          <button class="shop__before"></button>
+          <button class="shop__before"><</button>
         </div>
         <div class="shop__name">
-          <h3 class=""></h3>
+          <h2 class="">仙人</h2>
         </div>
       </div>
 
@@ -46,9 +46,13 @@
           <div class="reserve__main">
             <h3 class="reserve title">予約</h3>
             <div class="reserve__select">
-              <div class="reserve__select-input">
+              <div class="reserve__select-input select-date">
                 <input type="text" class="reserve__date">
+              </div>
+              <div class="reserve__select-input select-time">
                 <input type="text" class="reserve__time">
+              </div>
+              <div class="reserve__select-input select-num">
                 <input type="text" class="reserve__num">
               </div>
               <div class="reserve__select-confirmation">
@@ -75,7 +79,7 @@
           </div>
 
           <div class="form_btn">
-            
+            <button class="reserve_btn">予約する</button>
           </div>
         </form>
 
