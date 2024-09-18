@@ -27,6 +27,9 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/', [ShopController::class, 'index']);
+Route::get('/shop_detail/{id}', [ShopController::class, 'showDetail'])->name('detail');
+
+
 Route::get('/menu1', [MenuController::class, 'index']);
 Route::get('/register', [AuthController::class,'getRegister']);
 Route::post('/register', [AuthController::class, 'postRegister']);

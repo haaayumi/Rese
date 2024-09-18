@@ -13,7 +13,7 @@
 @endsection
 
 @section('search')
-<form>
+<form  onchange="submit(this.form)">
   <div>
     <select name="area" id="">
       <option value="all">All area</option>
@@ -44,20 +44,27 @@
 
 @section('content')
 <div class="shops">
-  <div class="shop__img">
-    <img src="{{ asset('img/sushi.jpg') }}" alt="お寿司屋さん画像" />
-  </div>
-  <div class="shop__content">
-    <h2 class="shop__name">仙人</h2>
-    <div class="shop__tag">
-      <p class="shop__tah-item">#東京都</p>
-      <p class="shop__tah-item">#寿司</p>
+  @foreach($shops as $shop)
+  <div class="shop_card">
+    <div class="shop__img">
+        <img src="{{ $shop->image_url }}" alt="お寿司屋さん画像" />
     </div>
-
     <div class="shop__content">
-      <input type="button" class="shop__content-button" value="詳しくみる">
-      <a href="" class="likes"><i class="fa-regular fa-heart"></i></a>
+      <h2 class="shop__name">{{ $shop->name }}</h2>
+      <div class="shop__tag">
+        <p class="shop__tah-item">#{{ $shop->area->name }} #{{ $shop->genre->name }}</p>
+      </div>
+      <div class="shop__content">
+        <div>
+          <a href="{{ route('detail', ['id' => $shop->id ]) }}">詳しく見る</a>
+        </div>
+        <div>
+          <a href="" class="likes"><i class="fa-regular fa-heart"></i></a>
+        </div>
+      </div>
     </div>
   </div>
+  @endforeach
+  
 </div>
 @endsection
