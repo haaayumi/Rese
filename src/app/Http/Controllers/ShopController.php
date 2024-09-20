@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Shop;
+use App\Models\Area;
+use App\Models\Genre;
 use Carbon\Carbon;
 
 class ShopController extends Controller
@@ -11,7 +13,21 @@ class ShopController extends Controller
     public function index()
     {
         $shops = Shop::with(['area:id,name','genre:id,name'])->get();
-        return view('index', compact('shops'));
+        $areas = Area::all();
+        $genres = Genre::all();
+
+        return view('index', compact('shops', 'areas', 'genres'));
+    }
+
+    public function search(Request $request)
+    {
+        $areas = Area::all();
+        $genres = Genre::all();
+        
+        $shops = Shop::with(['area:id,name', 'genre:id,name'])->AreaSearch($request->area_id)->GenreSearch($request->genre_id)->KeywordSearch($request->keyword)->get();
+
+
+        return view('index', compact('shops', 'areas', 'genres'));
     }
 
     public function  showDetail($id)

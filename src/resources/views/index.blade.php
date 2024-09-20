@@ -13,30 +13,29 @@
 @endsection
 
 @section('search')
-<form  onchange="submit(this.form)">
-  <div>
-    <select name="area" id="">
+<form action="/search" class="form" method="get">
+  @csrf
+  <div class="form__select">
+    <select name="area_id" id="area_id">
       <option value="all">All area</option>
-      <option value="tokyo">東京都</option>
-      <option value="osaka">大阪府</option>
-      <option value="fukuoka">福岡県</option>
+      @foreach($areas as $area)
+      <option value="{{ $area->id }}">{{ $area->name }}</option>
+      @endforeach
     </select>
   </div>
 
-  <div>
-    <select name="genre" id="">
+  <div class="form__select">
+    <select name="genre_id" id="genre_id">
       <option value="all">All genre</option>
-      <option value="sushi">寿司</option>
-      <option value="ramen">ラーメン</option>
-      <option value="izakaya">居酒屋</option>
-      <option value="yakiniku">焼肉</option>
-      <option value="italian">イタリアン</option>
+      @foreach($genres as $genre)
+      <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+      @endforeach
     </select>
   </div>
 
   <div>
     <div class="searchform">
-      <input type="text" class="search__text" placeholder="&#xf002;Search">
+      <input type="text" class="keyword" placeholder="&#xf002;Search">
     </div>
   </div>
 </form>
@@ -47,7 +46,7 @@
   @foreach($shops as $shop)
   <div class="shop_card">
     <div class="shop__img">
-        <img src="{{ $shop->image_url }}" alt="お寿司屋さん画像" />
+        <img src="{{ $shop->image_url }}" alt="{{$shop->genre->name}}さん画像" />
     </div>
     <div class="shop__content">
       <h2 class="shop__name">{{ $shop->name }}</h2>

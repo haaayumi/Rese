@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/', [ShopController::class, 'index']);
+Route::get('/search', [ShopController::class, 'search']);
 Route::get('/shop_detail/{id}', [ShopController::class, 'showDetail'])->name('detail');
 
 
